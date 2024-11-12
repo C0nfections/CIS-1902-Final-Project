@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "homework-6"
+name = "2048-project"
 version = "0.1.0"
 description = ""
 authors = []
@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 fastapi = {extras = ["standard"], version = "^0.115.4"}
 pygame = "^2.6.1"
+uvicorn = "^0.32.0"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
