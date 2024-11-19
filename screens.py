@@ -1,6 +1,8 @@
 import pygame
 from game import Game
 from renderer import Renderer
+from button import Button
+
 
 class StartScreen:
     def __init__(self, display: pygame.Surface, game_state_manager):
@@ -62,6 +64,7 @@ class GameScreen:
             self.game.update()
             
             if not self.game.moving and self.game.is_game_over():
+                self.game_state_manager.get_screen('end').set_final_score(self.game.get_score())
                 self.game_state_manager.set_state('end')
         
         self.renderer.draw_game(self.game)
@@ -71,21 +74,52 @@ class GameScreen:
 
 class EndScreen:
     def __init__(self, display: pygame.Surface, game_state_manager):
+        # self.display = display
+        # self.game_state_manager = game_state_manager
+        # self.game_screen = None
+        # self.font = pygame.font.Font(None, 60)
+        # # self.text = self.font.render(f"Game Over! Score: {score}. Press R to Restart.", True, (255, 255, 255))
+        # self.text_rect = self.text.get_rect(
+        #     center=(self.display.get_width() // 2, self.display.get_height() // 2)
+        # )
         self.display = display
         self.game_state_manager = game_state_manager
         self.game_screen = None
         self.font = pygame.font.Font(None, 60)
-        self.text = self.font.render("Game Over! Press R to Restart", True, (255, 255, 255))
-        self.text_rect = self.text.get_rect(
-            center=(self.display.get_width() // 2, self.display.get_height() // 2)
-        )
+        self.text = None
+        self.text_rect = None
+
+        # button_x = (self.display.get_width() - 200) // 2
+        # button_y = self.display.get_height() // 2 + 50
+        # self.add_score_button = Button(
+        #     x=button_x,
+        #     y=button_y,
+        #     width=200,
+        #     height=60,
+        #     text="Add score to Leaderboard",
+        #     font=self.leaderboard_font,
+        #     text_color=(255, 255, 255),
+        #     button_color=(50, 150, 50),
+        #     hover_color=(70, 200, 70),
+        #     action=self.add_score_to_leaderboard
+        # )
+
 
     def set_game_screen(self, game_screen) -> None:
         self.game_screen = game_screen
 
+    def set_final_score(self, score: int) -> None:
+        self.text = self.font.render(f"Game Over! Score: {score}. Press R to Restart.", True, (255, 255, 255))
+        self.text_rect = self.text.get_rect(
+            center=(self.display.get_width() // 2, self.display.get_height() // 2)
+        )
+
     def update(self) -> bool:
         self.display.fill((150, 20, 20))
-        self.display.blit(self.text, self.text_rect)
+        if self.text:
+            self.display.blit(self.text, self.text_rect)
+        # TO IMPLEMENT: button for adding score to leaderboard
+        # self.add_score_button.draw(self.display)
         pygame.display.flip()
 
         for event in pygame.event.get():
@@ -96,4 +130,7 @@ class EndScreen:
                     if self.game_screen:
                         self.game_screen.reset_game()
                     self.game_state_manager.set_state('game')
+            # Handle button events
+            # self.add_score_button.handle_event(event)
+
         return True

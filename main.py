@@ -18,7 +18,13 @@ def main():
     start_screen = StartScreen(screen, game_state_manager)
     game_screen = GameScreen(screen, game_state_manager, GRID_SIZE, TILE_SIZE)
     end_screen = EndScreen(screen, game_state_manager)
-    
+    end_screen.set_game_screen(game_screen)
+
+    game_state_manager.register_screen('start', start_screen)
+    game_state_manager.register_screen('game', game_screen)
+    game_state_manager.register_screen('end', end_screen)
+
+    # Set the game screen for the end screen (for resetting)
     end_screen.set_game_screen(game_screen)
     
     running = True

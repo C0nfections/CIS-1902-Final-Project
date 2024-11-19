@@ -243,6 +243,14 @@ class Game:
                 self.add_random_tile()
                 self.moved_this_turn = False
 
+    # def load_final_score(self) -> int:
+    #     try:
+    #         with open('final_score.txt', 'r') as f:
+    #             score = f.read().strip()
+    #             return int(score) if score.isdigit() else -1
+    #     except (FileNotFoundError, IOError, ValueError):
+    #         return -1
+
     def load_best_score(self) -> int:
         try:
             with open('best_score.txt', 'r') as f:
@@ -250,6 +258,13 @@ class Game:
                 return int(score) if score.isdigit() else 0
         except (FileNotFoundError, IOError, ValueError):
             return 0
+        
+    # def save_final_score(self) -> None:
+    #     try:
+    #         with open('best_score.txt', 'w') as f:
+    #             f.write(str(self.score))
+    #     except IOError:
+    #         print("Warning: Could not save final score")
 
     def save_best_score(self) -> None:
         try:
@@ -258,6 +273,10 @@ class Game:
         except IOError:
             print("Warning: Could not save best score")
 
+
+    def get_score(self) -> int:
+        return self.score
+    
     def is_game_over(self) -> bool:
         if len(self.board.tiles) < GRID_SIZE * GRID_SIZE:
             return False
