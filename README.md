@@ -15,7 +15,7 @@ A Python implementation of the classic 2048 game with a leaderboard system. Buil
 2. Clone this repository
 3. Navigate to the project folder and install dependencies:
 ```bash
-cd 2048-project-py3-12
+cd 2048-project-py3.12
 poetry install
 ```
 
@@ -28,6 +28,6 @@ poetry run uvicorn main:app
 ```
 2. In a new terminal, launch the game (from the project directory):
 ```bash
-cd 2048-project-py3-12
+cd 2048-project-py3.12
 poetry run python main.py
 ```
