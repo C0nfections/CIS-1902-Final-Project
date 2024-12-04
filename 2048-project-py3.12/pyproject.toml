@@ -1,15 +1,17 @@
 [tool.poetry]
-name = "2048-project"
+name = "2048-project-py3-12"
 version = "0.1.0"
 description = ""
-authors = []
+authors = ["Zain Khan <zain6khan@gmail.com>"]
 readme = "README.md"
+packages = [{include = "2048_project_py3"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = {extras = ["standard"], version = "^0.115.4"}
 pygame = "^2.6.1"
 uvicorn = "^0.32.0"
+requests = "^2.31.0"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
