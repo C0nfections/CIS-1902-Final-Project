@@ -7,7 +7,7 @@ class Score(BaseModel):
     username: str
     score: int
 
-leaderboard = []
+leaderboard = [] # leaderboard of type Score with username and score
 
 @app.post("/submit_score")
 def submit_score(score: Score):

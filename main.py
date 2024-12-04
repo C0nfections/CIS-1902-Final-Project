@@ -24,7 +24,6 @@ def main():
     game_state_manager.register_screen('game', game_screen)
     game_state_manager.register_screen('end', end_screen)
 
-    # Set the game screen for the end screen (for resetting)
     end_screen.set_game_screen(game_screen)
     
     running = True
